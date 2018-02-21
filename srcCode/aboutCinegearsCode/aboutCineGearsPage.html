@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <button onclick="userSignOut()">Sign out</button>
+  <button onclick="deleteUser()">Delete account </button>
+
+  
+  <ul id="myList">
+    <li>Coffee</li>
+    <li>Tea</li>
+  </ul>
+
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyC4jsvf0PsZvYTH_25jXLAdLXpDVFg1uhw",
+      authDomain: "cinegearsuserslist.firebaseapp.com",
+      databaseURL: "https://cinegearsuserslist.firebaseio.com",
+      projectId: "cinegearsuserslist",
+      storageBucket: "cinegearsuserslist.appspot.com",
+      messagingSenderId: "934939093990"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+<script>
+
+
+// Signing out users //
+function userSignOut(){
+  firebase.auth().signOut().then(function() {
+  console.log('Signed Out');
+}, 
+function(error) {
+  console.error('Sign Out Error', error);
+});
+}
+
+
+
+// Checking for signed in users //
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user.email)
+    // User is signed in.
+  } else {
+    // console.log('No users signed in yet')
+    null
+  }
+});
+
+
+
+function deleteUser(){
+  var user = firebase.auth().currentUser;
+    user.delete().then(function() {
+      alert('account deleted')
+    }).catch(function(error) {
+      alert(error)
+    });
+    }
+
+
+
+// var user = firebase.auth().currentUser;
+
+// if (user) {
+//   alert(user.email)
+// } else {
+//   // No user is signed in.
+// }
+
+</script>
+
+
+</body>
+</html>

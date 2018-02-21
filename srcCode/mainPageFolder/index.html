@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<style>
+    #userNameId{
+position: relative;
+height: 4%;
+background-color: 'red';
+margin-top: 10%;
+/* border-bottom: 1px solid red; */
+border-bottom: .1px solid blue;
+border-top: none;
+border-left: none;
+border-right: none;
+}
+
+#passwordId{
+position: relative;
+height: 4%;
+background-color: 'red';
+border-bottom: .1px solid blue;
+border-top: none;
+border-left: none;
+border-right: none;
+}
+
+#signInButton{
+    width: 10%;
+    height: 3%;
+    border-color: blue;
+    /* border-radius: 20%; */
+    /* background-color: red; */
+}
+
+div{
+    position: relative;
+    left: 40%
+    
+}
+</style>
+
+    <title>Home page</title>
+</head>
+<body>
+
+    <form>
+        <div id="mainDiv">
+            <input type="text" id="userNameId" style="width:10%" placeholder="User name" > <br/><br/>
+            <input type="password" id="passwordId" style="width:10%" placeholder="Password"><br/><br/>
+            <Input type="button" onclick="signInAction()" value="Sign in" id="signInButton"></Input>
+        </div>
+    </form>
+
+        <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyC4jsvf0PsZvYTH_25jXLAdLXpDVFg1uhw",
+            authDomain: "cinegearsuserslist.firebaseapp.com",
+            databaseURL: "https://cinegearsuserslist.firebaseio.com",
+            projectId: "cinegearsuserslist",
+            storageBucket: "cinegearsuserslist.appspot.com",
+            messagingSenderId: "934939093990"
+          };
+          firebase.initializeApp(config);
+        </script>
+
+     <script>
+        function signInAction(){
+            var userNameValue = document.getElementById('userNameId').value 
+            var passwordValue = document.getElementById('passwordId').value 
+
+            try {
+            firebase.auth().signInWithEmailAndPassword(userNameValue, passwordValue).then((user) =>{
+                alert(user.email)
+                })
+                }
+            catch (error)
+                {
+                  console.log(error.code)
+                }
+                }
+
+     </script>
+
+</body>
+</html>
